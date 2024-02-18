@@ -37,7 +37,7 @@ app = FastAPI()
 from loguru import logger
 
 
-@app.post("/endpoint")
+@app.post("/cookie_etract")
 async def endpoint(request: Request):
     remote_ip = request.client.host
     params = dict(request.query_params)
@@ -62,5 +62,4 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=18081)
-
 ```
