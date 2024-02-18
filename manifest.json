@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Cookie读取保存工具",
+    "name": "Cookie上传服务工具",
     "version": "0.1.0",
-    "description": "将网站的cookie保存到服务器上",
+    "description": "将网站的cookie上传到服务器上",
     "icons": {
       "16": "images/icon_48.png",
       "48": "images/icon_48.png",

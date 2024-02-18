@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const post_url = document.querySelector('#post_url');
     const fresh_time = document.querySelector('#fresh_time');
     const auto_fresh = document.querySelector('#auto_fresh');
+    const token = document.querySelector('#token');
     var tabUrl = ""
     var domain = ""
 
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 current_url.value = item.url;
                 fresh_time.value = item.fresh_time;
                 auto_fresh.checked = item.auto_fresh;
+                token.value = item.token;
 
                 // 根据auto_fresh和fresh_time设置徽章文本
                 if (auto_fresh.checked && parseInt(fresh_time.value) > 0) {
@@ -81,7 +83,8 @@ function saveSettings(tabUrl, domain) {
         "post_url": post,
         "fresh_time": fresh,
         "auto_fresh": auto,
-        "ref": tabUrl // Assuming you meant the current URL
+        "ref": tabUrl, // Assuming you meant the current URL
+        "token": token.value // Assuming you meant the current URL
     });
 
     console.log("【popup】localItem", localItem);

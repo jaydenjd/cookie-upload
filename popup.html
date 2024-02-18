@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>setting</title>
+    <title>设置</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         .wrapper {
             width: 350px;
             padding: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .container:after {
@@ -21,7 +21,7 @@
             color: #959595;
             text-transform: uppercase;
             letter-spacing: 1px;
-            content: "setting";
+            content: "设置";
         }
 
         button {
@@ -46,6 +46,13 @@
             <textarea class="form-control" id="post_url" placeholder="https://"></textarea>
         </div>
         <div class="form-group">
+            <label for="token">请求token</label>
+            <br>
+
+            <!--            <textarea class="form-control" id="token"></textarea>-->
+            <input id="token" type="password" />
+        </div>
+        <div class="form-group">
             <label for="fresh_time">页面刷新间隔</label>
             <div class="input-group">
                 <label class="input-group-addon">
@@ -54,7 +61,7 @@
                 <input class="form-control" type="number" id="fresh_time" placeholder="0" value="5" οnkeyup="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" onafterpaste="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" />
                 <div class="input-group-addon">秒 刷新</div>
             </div>
-            
+
         </div>
         <div class="form-group">
             <button id="save_btn" class="btn btn-primary">保存</button>
@@ -76,13 +83,13 @@
 				当前页面上传未设置时，使用默认上传url。
 			</div>
         </div>
-		<!-- <p class="text-center">
-			<small><a href="https://xiao.nu/">Design by <span class="text-uppercase">xiao.nu</span></a> 💗️</small>
-		</p> -->
+		<p class="text-center">
+			<small>Design by <span class="text-uppercase">jayden</span>️</small>
+		</p>
     </div>
 </body>
 
-<script src="js/md5.min.js"></script>
+<!--<script src="js/md5.min.js"></script>-->
 <script src="js/popup.js"></script>
 
 </html>

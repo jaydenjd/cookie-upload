@@ -19,7 +19,7 @@ async function saveCookieToServer(setting, currentCookie, currentUrl) {
         const response = await fetch(post_url, {
             method: 'POST',
             body: params,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded', 'token': setting.token},
         });
 
         if (response.ok) {
@@ -99,13 +99,15 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
     let tab = await chrome.tabs.get(activeInfo.tabId);
     var urlParse = new URL(tab.url);
     var domain = urlParse.hostname;
-    chrome.storage.local.get(domain, function (result) {
-        let data = result[domain];
-        if (isJSON(data)) {
-            let settings = JSON.parse(data);
-            chrome.action.setBadgeText({text: settings.fresh + 'm'});
-        } else {
-            chrome.action.setBadgeText({text: ''});
-        }
-    });
+    if (domain) {
+        chrome.storage.local.get(domain, function (result) {
+            let data = result[domain];
+            if (isJSON(data)) {
+                let settings = JSON.parse(data);
+                chrome.action.setBadgeText({text: settings.fresh + 'm'});
+            } else {
+                chrome.action.setBadgeText({text: ''});
+            }
+        });
+    }
 });
