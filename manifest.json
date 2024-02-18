@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "Cookie读取保存工具",
+    "version": "0.1.0",
+    "description": "将网站的cookie保存到服务器上",
+    "icons": {
+      "16": "images/icon_48.png",
+      "48": "images/icon_48.png",
+      "128": "images/icon_48.png"
+    },
+    "action": {
+      "default_icon": {
+        "19": "images/icon_48.png",
+        "38": "images/icon_48.png"
+      },
+      "default_title": "Cookie读取保存工具",
+      "default_popup": "popup.html"
+    },
+    "background": {
+       "service_worker": "js/background.js"
+    },
+    "permissions": [
+      "cookies",
+      "tabs",
+      "storage",
+      "alarms"
+    ],
+    "host_permissions":[
+      "http://*/*",
+      "https://*/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "<all_urls>"
+        ],
+        "js": [
+          "js/content.js"
+        ],
+        "run_at": "document_end",
+        "exclude_globs": [],
+        "include_globs": [
+          "*"
+        ]
+      }
+    ]
+  }

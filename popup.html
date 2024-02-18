@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>setting</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .wrapper {
+            width: 350px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .container:after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "setting";
+        }
+
+        button {
+            width: 30%;
+            margin-left: 3.3333333%;
+        }
+
+        #save_btn {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper container">
+        <div class="form-group">
+            <label for="current_url">当前页面上传url</label>
+            <textarea class="form-control" id="current_url" placeholder="https://"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="post_url">默认页面上传url</label>
+            <textarea class="form-control" id="post_url" placeholder="https://"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="fresh_time">页面刷新间隔</label>
+            <div class="input-group">
+                <label class="input-group-addon">
+                    <input type="checkbox" id="auto_fresh"> 页面自动刷新    每
+                </label>
+                <input class="form-control" type="number" id="fresh_time" placeholder="0" value="5" οnkeyup="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" onafterpaste="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" />
+                <div class="input-group-addon">秒 刷新</div>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <button id="save_btn" class="btn btn-primary">保存</button>
+            <button id="delete_btn" class="btn btn-warning">删除</button>
+            <button id="clear_btn" class="btn btn-danger">清空</button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">设置说明</h3>
+            </div>
+            <div class="panel-body">
+                <span class="label label-primary">保存</span> 当前页及默认设置；
+                <br>
+                <span class="label label-warning">删除</span> 删除当前页设置；
+                <br>
+                <span class="label label-danger">清空</span> 清除除默认设置外的所有页面。
+            </div>
+			<div class="panel-footer">
+				当前页面上传未设置时，使用默认上传url。
+			</div>
+        </div>
+		<!-- <p class="text-center">
+			<small><a href="https://xiao.nu/">Design by <span class="text-uppercase">xiao.nu</span></a> 💗️</small>
+		</p> -->
+    </div>
+</body>
+
+<script src="js/md5.min.js"></script>
+<script src="js/popup.js"></script>
+
+</html>
