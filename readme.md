@@ -23,7 +23,7 @@
 - 添加本地代码(刚刚解压的目录)
 - 设置插件起动即可
 
-![page-view](https://github.com/jaydenjd/cookie-upload/blob/master/images/page_settings.jpg)
+![page-view](https://github.com/jaydenjd/cookie-upload/blob/master/images/page_setting.jpg)
 
 
 ## python 服务端代码
