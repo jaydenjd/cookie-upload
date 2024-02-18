@@ -6,7 +6,10 @@
 
 适用浏览器：chrome, edge
 
-制作过程参考了：https://xiao.nu/opensource/chrome-edge-addons-help-you-snyc-browser-cookies-to-your-url.html
+制作过程参考了：https://xiao.nu/opensource/chrome-edge-addons-help-you-snyc-browser-cookies-to-your-url.html 。
+但该插件是 v2版本，可能会在不久的将来会被官方弃用， 所以我重新写了一个v3版本的插件。
+
+注意：该插件并不是直接获取浏览器的cookie，而是通过插件的方式，注入到页面中，然后获取页面的cookie，然后上传至服务端。如果需要手动提取，推荐使用插件 [EditThisCookie](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm?hl=zh-CN&utm_source=ext_sidebar)。
 
 ## 代码说明
 采用的 chrome 插件的方式，语法是 manifest v3版本， 代码结构如下：
