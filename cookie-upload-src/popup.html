@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>设置</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
@@ -32,61 +32,93 @@
         #save_btn {
             margin-left: 0;
         }
+
+        .line-break {
+            margin-bottom: 10px;
+        }
+
+        .label-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .label-container label {
+            width: 80px;
+            /*text-align: right;*/
+            margin-right: 10px;
+        }
+
+        .label-container input {
+            flex: 1;
+        }
+
     </style>
+
 </head>
 
 <body>
-    <div class="wrapper container">
-        <div class="form-group">
-            <label for="current_url">当前上传url</label>
-            <textarea class="form-control" id="current_url" placeholder="https://"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="post_url">默认上传url</label>
-            <textarea class="form-control" id="post_url" placeholder="https://"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="token">请求token</label>
-            <br>
-
-            <!--            <textarea class="form-control" id="token"></textarea>-->
-            <input id="token" type="password" />
-        </div>
-        <div class="form-group">
-            <label for="fresh_time">页面刷新间隔</label>
-            <div class="input-group">
-                <label class="input-group-addon">
-                    <input type="checkbox" id="auto_fresh"> 页面自动刷新    每
-                </label>
-                <input class="form-control" type="number" id="fresh_time" placeholder="0" value="5" οnkeyup="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" onafterpaste="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')" />
-                <div class="input-group-addon">秒 刷新</div>
-            </div>
-
-        </div>
-        <div class="form-group">
-            <button id="save_btn" class="btn btn-primary">保存</button>
-            <button id="delete_btn" class="btn btn-warning">删除</button>
-            <button id="clear_btn" class="btn btn-danger">清空</button>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">设置说明</h3>
-            </div>
-            <div class="panel-body">
-                <span class="label label-primary">保存</span> 当前页及默认设置；
-                <br>
-                <span class="label label-warning">删除</span> 删除当前页设置；
-                <br>
-                <span class="label label-danger">清空</span> 清除除默认设置外的所有页面。
-            </div>
-			<div class="panel-footer">
-				当前页面上传未设置时，使用默认上传url。
-			</div>
-        </div>
-		<p class="text-center">
-			<small>Design by <span class="text-uppercase">jayden</span>️</small>
-		</p>
+<div class="wrapper container">
+    <div class="form-group">
+        <label for="current_url">当前上传url</label>
+        <textarea class="form-control" id="current_url" placeholder="https://"></textarea>
     </div>
+    <div class="form-group">
+        <label for="post_url">默认上传url</label>
+        <textarea class="form-control" id="post_url" placeholder="https://"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="line-break">
+            <div class="label-container">
+                <label for="token_key">token key</label>
+                <input id="token_key" class="input-break" value="token" type="text" />
+            </div>
+        </div>
+        <div>
+            <div class="label-container">
+                <label for="token_value">token value</label>
+                <input id="token_value" type="password" />
+            </div>
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <label for="fresh_time">页面刷新间隔</label>
+        <div class="input-group">
+            <label class="input-group-addon">
+                <input type="checkbox" id="auto_fresh"> 页面自动刷新 每
+            </label>
+            <input class="form-control" type="number" id="fresh_time" placeholder="0" value="5"
+                   οnkeyup="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')"
+                   onafterpaste="this.value=this.value.replace(/^\+?[1-9]\d*$/,'0')"/>
+            <div class="input-group-addon">秒 刷新</div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <button id="save_btn" class="btn btn-primary">保存</button>
+        <button id="delete_btn" class="btn btn-warning">删除</button>
+        <button id="clear_btn" class="btn btn-danger">清空</button>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">设置说明</h3>
+        </div>
+        <div class="panel-body">
+            <span class="label label-primary">保存</span> 当前页及默认设置；
+            <br>
+            <span class="label label-warning">删除</span> 删除当前页设置；
+            <br>
+            <span class="label label-danger">清空</span> 清除除默认设置外的所有页面。
+        </div>
+        <div class="panel-footer">
+            当前页面上传未设置时，使用默认上传url。
+        </div>
+    </div>
+    <p class="text-center">
+        <small>Design by <span class="text-uppercase">jayden</span>️</small>
+    </p>
+</div>
 </body>
 
 <!--<script cookie-upload-src="js/md5.min.js"></script>-->

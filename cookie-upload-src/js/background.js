@@ -19,7 +19,7 @@ async function saveCookieToServer(setting, currentCookie, currentUrl) {
         const response = await fetch(post_url, {
             method: 'POST',
             body: params,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded', 'token': setting.token},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded', [setting.token_key]: setting.token_value},
         });
 
         if (response.ok) {

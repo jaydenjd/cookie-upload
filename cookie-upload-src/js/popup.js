@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const post_url = document.querySelector('#post_url');
     const fresh_time = document.querySelector('#fresh_time');
     const auto_fresh = document.querySelector('#auto_fresh');
-    const token = document.querySelector('#token');
+    const token_key = document.querySelector('#token_key');
+    const token_value = document.querySelector('#token_value');
     var tabUrl = ""
     var domain = ""
 
@@ -39,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 current_url.value = item.url;
                 fresh_time.value = item.fresh_time;
                 auto_fresh.checked = item.auto_fresh;
-                token.value = item.token;
+                token_key.value = item.token_key;
+                token_value.value = item.token_value;
 
                 // 根据auto_fresh和fresh_time设置徽章文本
                 if (auto_fresh.checked && parseInt(fresh_time.value) > 0) {
@@ -84,14 +86,11 @@ function saveSettings(tabUrl, domain) {
         "fresh_time": fresh,
         "auto_fresh": auto,
         "ref": tabUrl, // Assuming you meant the current URL
-        "token": token.value // Assuming you meant the current URL
+        "token_value": token_value.value, // Assuming you meant the current URL
+        "token_key": token_key.value // Assuming you meant the current URL
     });
 
     console.log("【popup】localItem", localItem);
-    // if(post !== ''){
-    //     localStorage.setItem('post_url', post);
-    // }
-    localStorage.setItem('current_url', current);
     chrome.storage.local.set({'post_url': post}, function () {
         console.log('【popup】Data has been set.', post);
     });
@@ -100,6 +99,7 @@ function saveSettings(tabUrl, domain) {
         console.log('【popup】Data has been set.', domain, tabUrl);
     });
 
+    localStorage.setItem('current_url', current);
     localStorage.setItem('fresh', fresh);
     localStorage.setItem('ref', tabUrl);
     localStorage.setItem('auto', auto);
