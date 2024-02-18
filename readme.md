@@ -1,6 +1,10 @@
 
-## 场景
-部分站点的cookie会过期，需要定时刷新上传至服务端，这个插件可以帮助你快速的获取cookie并上传至服务端
+## 介绍
+这是一个浏览器插件，可用于提取站点的cookie并上传至服务端，用于同步浏览器的cookie
+
+适用场景：部分站点的cookie会过期，需要定时刷新上传至服务端
+
+适用浏览器：chrome, edge
 
 制作过程参考了：https://xiao.nu/opensource/chrome-edge-addons-help-you-snyc-browser-cookies-to-your-url.html
 
@@ -15,7 +19,7 @@
 ## 使用方式
 
 - 下载代码，解压到文件夹
-- 打开浏览器插件设置页面 chrome://extensions/ ，并开启开发者模式 
+- 打开浏览器插件设置页面 [chrome://extensions/](chrome://extensions/) ，并开启开发者模式 
 - 添加本地代码(刚刚解压的目录)
 - 设置插件起动即可
 
