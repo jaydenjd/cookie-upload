@@ -19,7 +19,7 @@
 ## 使用方式
 
 - 下载代码，解压到文件夹
-- 打开浏览器插件设置页面 [chrome://extensions/](chrome://extensions/) ，并开启开发者模式 
+- 打开浏览器插件设置页面 [chrome://extensions/](chrome://extensions/)，并开启开发者模式 
 - 添加本地代码(刚刚解压的目录)
 - 设置插件起动即可
 
