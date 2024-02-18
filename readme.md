@@ -33,6 +33,8 @@
 ```python
 # -*- coding: utf-8 -*-
 # @Time   : 2024/2/17 14:31
+import json
+
 from fastapi import FastAPI
 from fastapi import Request
 
@@ -46,16 +48,17 @@ async def endpoint(request: Request):
     params = dict(request.query_params)
     headers = dict(request.headers)
     body = await request.body()
-    logger.info(f"{remote_ip} Headers: {headers}")
+    logger.info(f"{remote_ip} Headers: {json.dumps(headers, ensure_ascii=False)}")
+    token = headers.get("x-token")
 
-    if not headers.get("token"):
+    if not token:
         logger.error(f"token is empty")
         return {"code": 1, "msg": "token is empty"}
-    if headers.get("token") != "123456":
+    if token != "123456":
         logger.error(f"token is wrong")
         return {"code": 1, "msg": "token is wrong"}
 
-    logger.info(f"{remote_ip} Parameters: {params}")
+    logger.info(f"{remote_ip} Parameters: {json.dumps(params, ensure_ascii=False)}")
     logger.info(f"{remote_ip} Request Body: {body.decode()}")
 
     return {"code": 0, "msg": "success"}
