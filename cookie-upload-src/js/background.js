@@ -9,7 +9,7 @@ function isJSON(str) {
 }
 
 // Utility function to save cookies to the server
-async function saveCookieToServer(setting, currentCookie, currentUrl) {
+async function uploadCookieToServer(setting, currentCookie, currentUrl) {
     let post_url = setting.url || await (await chrome.storage.local.get('post_url')).post_url;
     const params = new URLSearchParams();
     params.append('ref_url', currentUrl);
@@ -61,6 +61,8 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 // Example of getting cookies and setting up the alarm
 async function getCookiesAndSetupAlarm(url) {
     let domain = new URL(url).hostname;
+    // 从单个 Cookie 存储区中检索与指定信息匹配的所有 Cookie。系统会对返回的 Cookie 进行排序，其中路径最长的 Cookie 排在最前面。
+    // 如果多个 Cookie 的路径长度相同，则创建时间最早的 Cookie 排在最前面。此方法仅检索扩展程序拥有主机权限的网域的 Cookie。
     let cookies = await chrome.cookies.getAll({url});
     let cookieString = cookies.map(cookie => `${cookie.name}=${cookie.value}`).join(';');
     console.log("【background】", cookieString)
@@ -70,7 +72,7 @@ async function getCookiesAndSetupAlarm(url) {
             auto_fresh: false
         };
         if (cookieString !== '') {
-            saveCookieToServer(setting, cookieString, url);
+            uploadCookieToServer(setting, cookieString, new URL(url).href);
         }
         if (setting.auto_fresh && setting.fresh_time > 0) {
             setupRefreshAlarm(domain, setting);
@@ -87,6 +89,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('Received message:', request);
     // if (request.action === 'getCookiesAndSetupAlarm') {
+    // request 对象来自 content.js 里的 chrome.runtime.sendMessage({url: url}
     getCookiesAndSetupAlarm(request.url).then(() => sendResponse({message: 'Cookies processed and alarm set up.'}));
     return true;  // Indicate async response
     // }
@@ -94,6 +97,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 console.log('Background script loaded.');
 
+// 监听标签页切换事件，持久化
 chrome.tabs.onActivated.addListener(async (activeInfo) => {
     console.log(activeInfo);
     let tab = await chrome.tabs.get(activeInfo.tabId);
@@ -104,7 +108,11 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
             let data = result[domain];
             if (isJSON(data)) {
                 let settings = JSON.parse(data);
+                // 根据auto_fresh和fresh_time设置徽章文本
                 chrome.action.setBadgeText({text: settings.fresh + 'm'});
+                // 设置背景颜色
+                chrome.action.setBadgeBackgroundColor({color: '#4688F1'});
+
             } else {
                 chrome.action.setBadgeText({text: ''});
             }

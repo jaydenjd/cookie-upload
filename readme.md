@@ -31,15 +31,23 @@
 
 ## python 服务端代码
 ```python
-# -*- coding: utf-8 -*-
-# @Time   : 2024/2/17 14:31
 import json
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi import Request
+from pydantic import BaseModel
 
 app = FastAPI()
 from loguru import logger
+
+
+# 自定义一个 Pydantic 模型
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
 
 
 @app.post("/cookie_etract")
@@ -47,6 +55,7 @@ async def endpoint(request: Request):
     remote_ip = request.client.host
     params = dict(request.query_params)
     headers = dict(request.headers)
+    from urllib.parse import parse_qs
     body = await request.body()
     logger.info(f"{remote_ip} Headers: {json.dumps(headers, ensure_ascii=False)}")
     token = headers.get("x-token")
@@ -59,7 +68,8 @@ async def endpoint(request: Request):
         return {"code": 1, "msg": "token is wrong"}
 
     logger.info(f"{remote_ip} Parameters: {json.dumps(params, ensure_ascii=False)}")
-    logger.info(f"{remote_ip} Request Body: {body.decode()}")
+    body  = dict(parse_qs(body.decode()))
+    logger.info(f"{remote_ip} Request Body: {json.dumps(body, ensure_ascii=False)}")
 
     return {"code": 0, "msg": "success"}
 
